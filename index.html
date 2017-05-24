@@ -263,6 +263,136 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://whenjonny.github.io/2017/05/24/laravel-https/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Junqiang Wen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/coffee.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="咖啡日记">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/24/laravel-https/" itemprop="url">laravel-https</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-24T09:54:45+08:00">
+                2017-05-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="laravel强制使用https"><a href="#laravel强制使用https" class="headerlink" title="laravel强制使用https"></a>laravel强制使用https</h2><ol>
+<li>使用middleware</li>
+</ol>
+<p>├── app<br>│   ├── Http<br>│   │   ├── Middleware</p>
+<pre><code>增加 app/Http/Middleware/HttpsProtocol.php
+
+public function handle($request, Closure $next) {
+    if($_SERVER[&apos;HTTP_X_FORWARED_PROTO&apos;] == &apos;https&apos;) {
+        \URL::forceScheme(&apos;https&apos;);
+    }
+}
+</code></pre><ol>
+<li>在provider里面实现</li>
+</ol>
+<p>├── app<br>│   ├── Providers</p>
+<pre><code>修改 AppServiceProvider, boot 增加：
+if($_SERVER[&apos;HTTP_X_FORWARED_PROTO&apos;] == &apos;https&apos;) {
+    \URL::forceScheme(&apos;https&apos;);
+}
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://whenjonny.github.io/2017/05/07/hack-term/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -677,7 +807,7 @@ source ~/.zshrc
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
